@@ -4,7 +4,7 @@ import org.apache.spark.sql.SQLContext
 
 object VisaSpark {
   val conf = new SparkConf().setMaster("local[*]");
-  val sc = SparkSession.builder().config(conf).appName("OracleSpark").getOrCreate().sparkContext;
+  val sc = SparkSession.builder().config(conf).appName("Spark").getOrCreate().sparkContext;
   
   def main(args:Array[String]){
     val schemaRdd = sc.textFile("data/schema")
