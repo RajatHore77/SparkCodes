@@ -40,7 +40,7 @@ from pyspark.sql.window import Window
 window = Window.partitionBy(empDt_df.address).orderBy(empDt_df.address.desc())
 empDt1_df = empDt_df.withColumn("Avg_salary_country_wise",Func.avg(empDt_df.salary).over(window))
 
-/#
+"""
 +------+--------+---------+------+-----------------------+
 |emp_id|emp_name|  address|salary|Avg_salary_country_wise|
 +------+--------+---------+------+-----------------------+
@@ -54,4 +54,5 @@ empDt1_df = empDt_df.withColumn("Avg_salary_country_wise",Func.avg(empDt_df.sala
 |     6|     Jim|       UK|  5400|                 6700.0|
 |     5|    Rose|Australia|  7000|                13500.0|
 |     9|    Andy|Australia| 20000|                13500.0|
-+------+--------+---------+------+-----------------------+ #/
++------+--------+---------+------+-----------------------+ """
+ 
