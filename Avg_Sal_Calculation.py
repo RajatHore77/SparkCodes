@@ -12,7 +12,7 @@ sqlContext=SQLContext(sc);
 spark=sqlContext.sparkSession
 
 empDt_df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").option("inferSchema", "true")
-.option("delimiter", ",").load("C:/spark/Datafile/emp_dt_salary.txt")
+.option("delimiter", ",").load("********")
 
 emp2_df.show()
 
@@ -34,13 +34,14 @@ def totalAvg(list):
  avgSal=totalAvg(salList)
  newEmpDt_df = empDt_df.withColumn("avgSalary", Func.lit(avgSal))
 
-// another approach using windows function
+# another approach using windows function
 
 from pyspark.sql.window import Window
 window = Window.partitionBy(empDt_df.address).orderBy(empDt_df.address.desc())
 empDt1_df = empDt_df.withColumn("Avg_salary_country_wise",Func.avg(empDt_df.salary).over(window))
 
-/*+------+--------+---------+------+-----------------------+
+/#
++------+--------+---------+------+-----------------------+
 |emp_id|emp_name|  address|salary|Avg_salary_country_wise|
 +------+--------+---------+------+-----------------------+
 |     4|   Tanya|   Russia|  7500|                23750.0|
@@ -53,4 +54,4 @@ empDt1_df = empDt_df.withColumn("Avg_salary_country_wise",Func.avg(empDt_df.sala
 |     6|     Jim|       UK|  5400|                 6700.0|
 |     5|    Rose|Australia|  7000|                13500.0|
 |     9|    Andy|Australia| 20000|                13500.0|
-+------+--------+---------+------+-----------------------+ */
++------+--------+---------+------+-----------------------+ #/
